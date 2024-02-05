@@ -1,4 +1,4 @@
-.wrapper {
+#wrapper-metrics {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
@@ -6,13 +6,13 @@
 }
 
 @media only screen and (max-width: 600px) {
-    .wrapper {
+    #wrapper-metrics {
         grid-template-columns: 1fr 1fr;
     }
 }
 
 @media only screen and (max-width: 475px) {
-    .wrapper {
+    #wrapper-metrics {
         grid-template-columns: 1fr;
     }
 }

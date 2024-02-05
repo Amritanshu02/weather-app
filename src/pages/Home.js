@@ -7,36 +7,48 @@ import { DateAndTime } from "../components/DateAndTime";
 import { Search } from "../components/Search";
 import { MetricsBox } from "../components/MetricsBox";
 import { UnitSwitch } from "../components/UnitSwitch";
+import { LoadingScreen } from "../components/LoadingScreen";
+import { ErrorScreen } from "../components/ErrorScreen";
+import BasicLineChart from "../components/BasicLineChart";
 
-import styles from "../styles/Home.module.css";
+import "../styles/Home.css";
 
 export const Home = () => {
-    const [cityInput, setCityInput] = useState("Riga");
+    const [cityInput, setCityInput] = useState("Lucknow");
     const [triggerFetch, setTriggerFetch] = useState(true);
     const [weatherData, setWeatherData] = useState();
     const [unitSystem, setUnitSystem] = useState("metric");
 
     useEffect(() => {
         const getData = async () => {
-            const res = await fetch("api/data", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ cityInput }),
-            });
-            const data = await res.json();
-            setWeatherData({ ...data });
-            setCityInput("");
+            try {
+                const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&units=metric&appid=9fd7dfa518bf64561459e7b7a7501c38`);
+                const data = await res.json();
+
+                if (res.ok) {
+                    setWeatherData({ ...data });
+                } else {
+                    // Handle error here if needed
+                    console.error("Error fetching weather data:", data.message);
+                }
+
+                setCityInput("");
+            } catch (error) {
+                console.error("Error during fetch:", error.message);
+            }
         };
+
         getData();
     }, [triggerFetch]);
 
+
     const changeSystem = () =>
-        unitSystem == "metric"
+        unitSystem === "metric"
             ? setUnitSystem("imperial")
             : setUnitSystem("metric");
 
     return weatherData && !weatherData.message ? (
-        <div className={styles.wrapper}>
+        <div id="wrapper-home">
             <MainCard
                 city={weatherData.name}
                 country={weatherData.sys.country}
@@ -62,8 +74,9 @@ export const Home = () => {
                         }}
                     />
                 </Header>
-                <MetricsBox weatherData={weatherData} unitSystem={unitSystem} />
                 <UnitSwitch onClick={changeSystem} unitSystem={unitSystem} />
+                <MetricsBox weatherData={weatherData} unitSystem={unitSystem} />
+                <BasicLineChart />
             </ContentBox>
         </div>
     ) : weatherData && weatherData.message ? (

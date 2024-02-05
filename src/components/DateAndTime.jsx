@@ -1,9 +1,9 @@
-// import { getWeekDay, getTime, getAMPM } from "../services/helpers";
-import styles from "../styles/DateAndTime.css";
+import { getWeekDay, getTime, getAMPM } from "../services/helpers";
+import "../styles/DateAndTime.css";
 
 export const DateAndTime = ({ weatherData, unitSystem }) => {
     return (
-        <div className={styles.wrapper}>
+        <div id="wrapper-date">
             <h2>
                 {`${getWeekDay(weatherData)}, ${getTime(
                     unitSystem,

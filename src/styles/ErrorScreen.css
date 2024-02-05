@@ -1,0 +1,8 @@
+#wrapper-error {
+    max-width: 260px;
+    text-align: center;
+}
+
+#error-message {
+    margin-bottom: 30px;
+}

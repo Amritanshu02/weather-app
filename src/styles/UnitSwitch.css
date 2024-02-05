@@ -1,0 +1,36 @@
+#wrapper-unit {
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.switch {
+    display: inline;
+    margin: 0 10px;
+    cursor: pointer;
+    padding: 7px;
+}
+
+.active {
+    color: green;
+}
+
+.inactive {
+    color: black;
+}
+
+@media only screen and (max-width: 475px) {
+    #wrapper-unit {
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 335px) {
+    #wrapper-unit {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .switch {
+        margin: 10px 0;
+    }
+}

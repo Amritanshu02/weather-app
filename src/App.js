@@ -1,11 +1,11 @@
+import Home from "./pages/Home";
+import "./styles/App.css";
 
-
+// function App({ Component, pageProps }) {
+//   return <Component {...pageProps} />;
+// }
 function App() {
-  return (
-    <div className="App">
-      hello
-    </div>
-  );
+  return <Home />
 }
 
 export default App;

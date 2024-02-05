@@ -6,11 +6,11 @@ import {
     getWindSpeed,
 } from "../services/helpers";
 import { MetricsCard } from "./MetricsCard";
-import styles from "../styles/MetricsBox.css";
+import "../styles/MetricsBox.css";
 
 export const MetricsBox = ({ weatherData, unitSystem }) => {
     return (
-        <div className={styles.wrapper}>
+        <div id="wrapper-metrics">
             <MetricsCard
                 title={"Humidity"}
                 iconSrc={"/icons/humidity.png"}
